@@ -1,4 +1,4 @@
-# import turtle
+import turtle
 import math
 import numpy as np
 
@@ -40,32 +40,117 @@ def verhulst(arr, mode):
         f1 = lambda x : x1[0] if x == 0 else a * x1[0] / (b * x1[0] + (a - b * x1[0]) * math.exp(a * x))
     
     f = f0 if mode == 0 else f1
-    # print([f(i) for i in range(len(arr) * 2)])
+    print([f(i) for i in range(len(arr) * 2)])
     return f
 
-def draw_points(X, Y):
-    pass
+def draw_points(t, y):
+    h = list(map(round, y))
 
-def draw_function(f, xm):
-    xl = 320
-    yl = 240
+    turtle.tracer(False)
+    heading = t.heading()
 
-    val = [f(xl * i / xl) for i in range(xl)]
-    ym = max(val)
+    t.pu()
+    t.seth(90)
+    for i in range(len(y)):
+        print(h[i])
+        t.fd(h[i] if i == 0 else h[i] - h[i - 1])
+        t.pd()
+        t.fd(1)
+        t.pu()
+        t.bk(1)
+        t.rt(90)
+        t.fd(1)
+        t.lt(90)
+        if i % 20 == 0:
+            turtle.update()
 
-    for i in range(xl):
-        draw_points([])
+    t.bk(h[-1])
+    t.lt(90)
+    t.fd(len(h))
+    t.rt(90)
+    t.seth(heading)
+
+    turtle.update()
+    turtle.tracer(True)
+
+def draw_arrow(t, length, degree):
+    t.rt(degree)
+    t.bk(length)
+    t.fd(length)
+    t.lt(degree * 2)
+    t.bk(length)
+    t.fd(length)
+    t.rt(degree)
+
+def draw_function(t, f, x_max):
+    t.speed(0)
+    t.home
+    t.ht()
+    t.pu()
+    t.bk(turtle.window_width() * 2 // 5)
+    t.rt(90)
+    t.fd(turtle.window_height() * 2 // 5)
+
+    height = turtle.window_height() * 4 // 5
+    width = turtle.window_width() * 4 // 5
+
+    # 绘制坐标轴
+    t.seth(0)
+    t.pu()
+    t.bk(8)
+    t.rt(90)
+    t.fd(12)
+    t.write("O", False)
+    t.bk(12)
+    t.lt(90)
+    t.fd(8)
+    t.pd()
+    t.fd(width)
+    draw_arrow(t, 8, 24)
+    t.pu()
+    t.rt(90)
+    t.fd(16)
+    t.write("x", False)
+    t.bk(16)
+    t.lt(90)
+    t.pd()
+    t.bk(width)
+    t.lt(90)
+    t.fd(height)
+    draw_arrow(t, 8, 24)
+    t.pu()
+    t.bk(8)
+    t.lt(90)
+    t.fd(12)
+    t.write("y", False)
+    t.bk(12)
+    t.rt(90)
+    t.fd(8)
+    t.pd()
+    t.bk(height)
+
+    # 绘制函数图像
+    f_height = height * 17 // 20
+    f_width = width * 17 // 20
+    x = [(i * x_max / f_width) for i in range(f_width)]
+    y = [f(x[i]) for i in range(f_width)]
+    h = [(y[i] * f_height / max(y)) for i in range(f_width)]
+
+    draw_points(t, h)
 
 def demo(id):
     if id == 0:
         a = [174, 179, 183, 189, 207, 234, 220.5, 256, 270, 285]
         f = verhulst(a, 0)
-        draw_function(f, len(a) * 2)
     else:
         a = [0.025, 0.023, 0.029, 0.044, 0.084, 0.164, 0.332, 0.521, 0.97, 1.6, 2.45, 3.11, 3.57, 3.76, 3.96, 4, 4.46, 4.4, 4.49, 4.76, 5.01]
         f = verhulst(a, 1)
-        draw_function(f, len(a) * 2)
+    t = turtle.Turtle()
+    t.reset()
+    w = turtle.Screen()
+    draw_function(t, f, len(a) * 2)
+    w.exitonclick()
 
 if __name__ == "__main__":
-    # demo(0)
+    demo(0)
     # demo(1)
