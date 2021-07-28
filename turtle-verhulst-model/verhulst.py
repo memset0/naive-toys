@@ -2,6 +2,11 @@ import turtle
 import math
 import numpy as np
 
+# ENABLE_ANIMATION = True
+ENABLE_ANIMATION = False
+
+
+
 def verhulst(arr, mode):
     if mode == 0:
         x0 = arr
@@ -43,6 +48,8 @@ def verhulst(arr, mode):
     print([f(i) for i in range(len(arr) * 2)])
     return f
 
+
+
 def draw_curve(t, y):
     h = list(map(round, y))
 
@@ -52,7 +59,6 @@ def draw_curve(t, y):
     t.pu()
     t.seth(90)
     for i in range(len(y)):
-        print(h[i])
         t.fd(h[i] if i == 0 else h[i] - h[i - 1])
         t.pd()
         t.fd(1)
@@ -61,7 +67,7 @@ def draw_curve(t, y):
         t.rt(90)
         t.fd(1)
         t.lt(90)
-        if i % 20 == 0:
+        if ENABLE_ANIMATION and i % 15 == 0:
             turtle.update()
 
     t.bk(h[-1])
@@ -70,8 +76,20 @@ def draw_curve(t, y):
     t.rt(90)
     t.seth(heading)
 
-    turtle.update()
-    turtle.tracer(True)
+    if ENABLE_ANIMATION:
+        turtle.update()
+        turtle.tracer(True)
+
+
+
+def draw_function(t, f, x_max, width, height):
+    x = [(i * x_max / width) for i in range(width)]
+    y = [f(x[i]) for i in range(width)]
+    h = [(y[i] * height / max(y)) for i in range(width)]
+
+    draw_curve(t, h)
+
+
 
 def draw_arrow(t, length, degree):
     t.rt(degree)
@@ -82,18 +100,34 @@ def draw_arrow(t, length, degree):
     t.fd(length)
     t.rt(degree)
 
-def draw_function(t, f, x_max):
+
+
+def demo(id):
+    if id == 0:
+        a = [174, 179, 183, 189, 207, 234, 220.5, 256, 270, 285]
+        f = verhulst(a, 0)
+    else:
+        a = [0.025, 0.023, 0.029, 0.044, 0.084, 0.164, 0.332, 0.521, 0.97, 1.6, 2.45, 3.11, 3.57, 3.76, 3.96, 4, 4.46, 4.4, 4.49, 4.76, 5.01]
+        f = verhulst(a, 1)
+
+    t = turtle.Turtle()
+    w = turtle.Screen()
+
+    t.reset()
+    turtle.tracer(ENABLE_ANIMATION)
+
+    width = turtle.window_width() * 9 // 10
+    height = turtle.window_height() * 9 // 10
+    origin_x = -width // 2
+    origin_y = -height // 2
+    f_width = width * 9 // 10
+    f_height = height * 9 // 10
+
     t.speed(0)
-    t.home
     t.ht()
     t.pu()
-    t.bk(turtle.window_width() * 2 // 5)
-    t.rt(90)
-    t.fd(turtle.window_height() * 2 // 5)
-
-    height = turtle.window_height() * 4 // 5
-    width = turtle.window_width() * 4 // 5
-
+    t.goto(origin_x, origin_y)
+    
     # 绘制坐标轴
     t.seth(0)
     t.pu()
@@ -129,28 +163,15 @@ def draw_function(t, f, x_max):
     t.pd()
     t.bk(height)
 
-    # 绘制函数图像
-    f_height = height * 17 // 20
-    f_width = width * 17 // 20
-    x = [(i * x_max / f_width) for i in range(f_width)]
-    y = [f(x[i]) for i in range(f_width)]
-    h = [(y[i] * f_height / max(y)) for i in range(f_width)]
+    t.color("blue")
+    draw_function(t, f, len(a) * 2, f_width, f_height)
+    t.color("black")
 
-    draw_curve(t, h)
-
-def demo(id):
-    if id == 0:
-        a = [174, 179, 183, 189, 207, 234, 220.5, 256, 270, 285]
-        f = verhulst(a, 0)
-    else:
-        a = [0.025, 0.023, 0.029, 0.044, 0.084, 0.164, 0.332, 0.521, 0.97, 1.6, 2.45, 3.11, 3.57, 3.76, 3.96, 4, 4.46, 4.4, 4.49, 4.76, 5.01]
-        f = verhulst(a, 1)
-    t = turtle.Turtle()
-    t.reset()
-    w = turtle.Screen()
-    draw_function(t, f, len(a) * 2)
+    turtle.update()
     w.exitonclick()
 
+
+
 if __name__ == "__main__":
-    demo(0)
-    # demo(1)
+    # demo(0)
+    demo(1)
