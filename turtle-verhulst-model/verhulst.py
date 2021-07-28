@@ -43,7 +43,7 @@ def verhulst(arr, mode):
     print([f(i) for i in range(len(arr) * 2)])
     return f
 
-def draw_points(t, y):
+def draw_curve(t, y):
     h = list(map(round, y))
 
     turtle.tracer(False)
@@ -136,7 +136,7 @@ def draw_function(t, f, x_max):
     y = [f(x[i]) for i in range(f_width)]
     h = [(y[i] * f_height / max(y)) for i in range(f_width)]
 
-    draw_points(t, h)
+    draw_curve(t, h)
 
 def demo(id):
     if id == 0:
