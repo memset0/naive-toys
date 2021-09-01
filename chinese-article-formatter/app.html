@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>汉语文献格式化工具</title>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"
+  integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw"
+  crossorigin="anonymous"
+/>
+
+  <style>
+    body {
+      width: 90%;
+      margin: 5%;
+    }
+    .mdui-checkbox {
+      display: block;
+    }
+    .mdui-btn {
+      display: block;
+      margin-top: .5em;
+      margin-bottom: .5em;
+    }
+  </style>
+
+</head>
+ 
+<body>
+
+  <label class="mdui-checkbox"><input id="delete-spaces" type="checkbox" checked/><i class="mdui-checkbox-icon"></i>删除空格</label>
+  <label class="mdui-checkbox"><input id="delete-blank-lines" type="checkbox" checked/><i class="mdui-checkbox-icon"></i>删除空行</label>
+  <label class="mdui-checkbox"><input id="convert-half-width-punctuation" type="checkbox" checked/><i class="mdui-checkbox-icon"></i>转换半角标点</label>
+  <button id="button" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-indigo">格式化</button>
+
+  <div class="mdui-textfield">
+    <textarea id="text" class="mdui-textfield-input" placeholder="Enter your article here..." rows="10"></textarea>
+  </div>
+
+  <script src="./app.js"></script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"
+    integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A"
+    crossorigin="anonymous"
+  ></script>
+
+</body>
+</html>
