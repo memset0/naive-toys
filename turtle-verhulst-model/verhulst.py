@@ -62,11 +62,11 @@ def draw_curve(t, y):
 
     t.pu()
     t.seth(90)
+    t.fd(h[0])
+    t.pd()
     for i in range(len(y)):
-        t.fd(h[i] if i == 0 else h[i] - h[i - 1])
-        t.pd()
-        t.fd(1)
-        t.pu()
+        delta = 0 if i == 0 else h[i] - h[i - 1]
+        t.fd(1 + delta)
         t.bk(1)
         t.rt(90)
         t.fd(1)
