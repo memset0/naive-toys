@@ -75,6 +75,7 @@ def draw_curve(t, y):
         if ENABLE_ANIMATION and i % 15 == 0:
             turtle.update()
 
+    t.pu()
     t.bk(h[-1])
     t.lt(90)
     t.fd(len(h))
@@ -179,5 +180,5 @@ def demo(id):
 
 
 if __name__ == "__main__":
-    # demo(0)
-    demo(1)
+    demo(0)
+    # demo(1)
