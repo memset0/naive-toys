@@ -67,8 +67,11 @@ def draw_curve(t, y):
     t.pd()
     for i in range(len(y)):
         delta = 0 if i == 0 else h[i] - h[i - 1]
-        t.fd(1 + delta)
-        t.bk(1)
+        if delta:
+            t.fd(delta)
+        else:
+            t.fd(1)
+            t.bk(1)
         t.rt(90)
         t.fd(1)
         t.lt(90)
@@ -180,5 +183,5 @@ def demo(id):
 
 
 if __name__ == "__main__":
-    demo(0)
-    # demo(1)
+    # demo(0)
+    demo(1)
