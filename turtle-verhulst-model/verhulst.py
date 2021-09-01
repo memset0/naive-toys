@@ -8,6 +8,8 @@ ENABLE_ANIMATION = False
 
 
 def verhulst(arr, mode):
+    # 求得基本数组，x1 为 x0 的一阶差分，z 是 x1 相邻两数的平均值，Y 是 x0 的生成向量，B 是参数矩阵
+
     if mode == 0:
         x0 = arr
         x1 = [x0[0]]
@@ -23,7 +25,7 @@ def verhulst(arr, mode):
     
     z = [(x1[i + 1] + x1[i]) / 2 for i in range(0, len(x1) - 1)]
     # print(z)
-    
+
     Y = np.array([[x0[i]] for i in range(1, len(x0))])
     # print(Y)
     
@@ -33,11 +35,13 @@ def verhulst(arr, mode):
         B = np.array([[-z[i], z[i] ** 2] for i in range(len(z))])
     # print(B)
 
+    # 通过最小二乘法求得目标函数的常数 a, b
     the = np.matmul(np.matmul(np.linalg.inv(np.matmul(B.transpose(), B)), B.transpose()), Y)
     a = the[0][0]
     b = the[1][0]
     # print(a, b)
 
+    # 代入目标函数得到 lambda 表达式（支持输入实数）
     if mode == 0:
         f1 = lambda x : x1[0] if x == 0 else ((x1[0] - b / a) / math.exp(a * x) + b / a)
         f0 = lambda x : x0[0] if x == 0 else (f1(x) - f1(x - 1))
