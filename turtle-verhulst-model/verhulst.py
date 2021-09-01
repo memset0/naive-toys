@@ -3,7 +3,7 @@ import math
 import numpy as np
 
 # ENABLE_ANIMATION = True
-ENABLE_ANIMATION = False
+ENABLE_ANIMATION = False  # 控制绘图动画开关 True 开 / False 关
 
 
 
@@ -55,9 +55,10 @@ def verhulst(arr, mode):
 
 
 def draw_curve(t, y):
+    # 绘制函数图像
     h = list(map(round, y))
 
-    turtle.tracer(False)
+    turtle.tracer(False)  # 手动管理 tracer 以加速
     heading = t.heading()
 
     t.pu()
@@ -87,6 +88,7 @@ def draw_curve(t, y):
 
 
 def draw_function(t, f, x_max, width, height):
+    # 根据函数定义域和画布大小放缩图像得到点坐标
     x = [(i * x_max / width) for i in range(width)]
     y = [f(x[i]) for i in range(width)]
     h = [(y[i] * height / max(y)) for i in range(width)]
@@ -127,7 +129,7 @@ def demo(id):
     f_width = width * 9 // 10
     f_height = height * 9 // 10
 
-    t.speed(0)
+    t.speed(0)  # 设置绘图速度为 0 以加速
     t.ht()
     t.pu()
     t.goto(origin_x, origin_y)
@@ -172,7 +174,7 @@ def demo(id):
     t.color("black")
 
     turtle.update()
-    w.exitonclick()
+    w.exitonclick()  # 点击画布自动退出
 
 
 
