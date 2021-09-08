@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 class MyRange:
 
     def __init__(self, start, end=None, step=1):
