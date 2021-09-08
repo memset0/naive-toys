@@ -5,33 +5,33 @@ class MyRange:
             raise
         if end == None:
             start, end = 0, start
-        self.start = start
-        self.end = end
-        self.step = step
+        self._start = start
+        self._end = end
+        self._step = step
         self._pointer = start
     
     def __getitem__(self, key):
-        res = self.start + self.step * key
-        if self.step > 0:
-            if res >= self.end:
+        res = self._start + self._step * key
+        if self._step > 0:
+            if res >= self._end:
                 raise StopIteration
         else:
-            if res <= self.end:
+            if res <= self._end:
                 raise StopIteration
         return res
     
     def __iter__(self):
-        self._pointer = self.start
+        self._pointer = self._start
         return self
     
     def __next__(self):
-        if self.step > 0:
-            self._pointer += self.step
-            if self._pointer >= self.end:
+        if self._step > 0:
+            self._pointer += self._step
+            if self._pointer >= self._end:
                 raise StopIteration
         else:
-            self._pointer += self.step
-            if self._pointer <= self.end:
+            self._pointer += self._step
+            if self._pointer <= self._end:
                 raise StopIteration
         return self._pointer
 
