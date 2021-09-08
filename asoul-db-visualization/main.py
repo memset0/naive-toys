@@ -4,7 +4,8 @@
 import jieba
 from os import path
 from math import log
-from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud, ImageColorGenerator, STOPWORDS
 
 ignore_words = ['我', '你', '的', '了', '我们', '你们',
                 '是', '就', '嗯', '啊', '吗', '吧', '哈哈', '哈哈哈']
@@ -31,7 +32,10 @@ for file in source_files:
 for ignore_word in ignore_words:
     source[ignore_word] = log(source[ignore_word])
 
-wc = WordCloud(height=800, width=2000, background_color="white",
-               margin=2, font_path=path.join(dirname, 'Lolita.ttf'))
+mask = plt.imread(path.join(dirname, 'mask.jpg'))
+mask_col = ImageColorGenerator(mask)
+wc = WordCloud(background_color=None, mode="RGBA", margin=2, stopwords=STOPWORDS, mask=mask,
+               max_font_size=160, random_state=2000, font_path=path.join(dirname, 'Lolita.ttf'))
 im = wc.generate_from_frequencies(source)
+wc.recolor(color_func=mask_col)
 im.to_file(dist_file)
