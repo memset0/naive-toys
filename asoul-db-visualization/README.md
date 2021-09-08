@@ -4,11 +4,11 @@
 
 ~~然然，我的然然！~~
 
-<table><tr><td>
+<table><tr><td valign="middle">
 
 ![](https://raw.githubusercontent.com/memset0/senior-school-technology-lesson/master/asoul-db-visualization/mask.jpg)
 
-</td><td>
+</td><td valign="middle">
 
 ![](https://raw.githubusercontent.com/memset0/senior-school-technology-lesson/master/asoul-db-visualization/dist.png)
 
