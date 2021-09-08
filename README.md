@@ -1,3 +1,3 @@
-# information-technology-homework
+# senior-school-technology-lesson
 
-普通高中信息技术学科课程作业
+普通高中信息技术学科课程
