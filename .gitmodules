@@ -1,0 +1,3 @@
+[submodule "resources"]
+	path = resources
+	url = git@github.com:memset0/senior-school-technology-lesson-resources.git
