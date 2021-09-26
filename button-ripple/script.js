@@ -1,5 +1,5 @@
 Array.from(document.getElementsByClassName('btn-ripple')).forEach($btn => {
-  $btn.onclick = event => {
+  $btn.addEventListener('click', event => {
     const $ripple = document.createElement('div');
     const x = event.x - $btn.getBoundingClientRect().x - 10;
     const y = event.y - $btn.getBoundingClientRect().y - 10;
@@ -12,5 +12,5 @@ Array.from(document.getElementsByClassName('btn-ripple')).forEach($btn => {
       $ripple.removeEventListener('animationend', listener);
     };
     $ripple.addEventListener('animationend', listener);
-  };
+  });
 });
