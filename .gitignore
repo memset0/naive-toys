@@ -1,7 +1,10 @@
-tmp
-resources
 README.pdf
 README.html
+/tmp
+/resources
+/blank-filling-generator/blank.py
+/blank-filling-generator/source.py
+/blank-filling-generator/result.html
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
