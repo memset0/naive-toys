@@ -68,7 +68,7 @@ def parse(offset, keys):
                         title=title,
                         date=str(date),
                         url=url,
-                        plain=str(plain))
+                        plain=plain.decode('utf-8'))
             write_file(f'data/{id}.json', json.dumps(data, ensure_ascii=False))
         except Exception as e:
             print(data['comm_msg_info']['id'], 'skipped.')
