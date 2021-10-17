@@ -5,6 +5,10 @@ README.html
 /blank-filling-generator/blank.py
 /blank-filling-generator/source.py
 /blank-filling-generator/result.html
+/wechat-spider/data
+/wechat-spider/script.py
+/wechat-spider/config.yml
+/traditional-poem-analytics/tmp
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
