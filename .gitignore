@@ -1,3 +1,5 @@
+*.tmp
+*.docx
 README.pdf
 README.html
 /tmp
