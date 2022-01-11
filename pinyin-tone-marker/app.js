@@ -8,7 +8,8 @@ String.prototype.replaceAll = function (search, replacement) {
 
 document.getElementById('button').onclick = function () {
 	const options_name = [
-		'space-needed',
+		'left-space-needed',
+		'right-space-needed',
 		'bracket-needed',
 		'blank-mode',
 	];
@@ -43,8 +44,12 @@ function format(text, options) {
 			match = '(' + match + ')';
 		}
 
-		if (options['space-needed']) {
-			match = ' ' + match + ' ';
+		if (options['left-space-needed']) {
+			match = ' ' + match;
+		}
+
+		if (options['right-space-needed']) {
+			match = match + ' ';
 		}
 
 		return match;
