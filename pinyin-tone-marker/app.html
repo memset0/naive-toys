@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>拼音声调标记工具</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css" integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw" crossorigin="anonymous"/>
+
+    <style>
+      body {
+        width: 90%;
+        margin: 5%;
+      }
+      .mdui-checkbox {
+        display: block;
+      }
+      .mdui-btn {
+        display: block;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+    <label class="mdui-checkbox"><input id="space-needed" type="checkbox" checked/><i class="mdui-checkbox-icon"></i>在拼音前后添加空格</label>
+    <label class="mdui-checkbox"><input id="bracket-needed" type="checkbox"/><i class="mdui-checkbox-icon"></i>在拼音前后添加括号</label>
+    <label class="mdui-checkbox"><input id="blank-mode" type="checkbox"/><i class="mdui-checkbox-icon"></i>用空下划线替换拼音</label>
+    <button id="button" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-indigo">转换</button>
+
+    <div class="mdui-textfield">
+      <textarea id="text" class="mdui-textfield-input" placeholder="Enter your text here..." rows="20"></textarea>
+    </div>
+
+    <script src="./app.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js" integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A" crossorigin="anonymous"></script>
+
+  </body>
+</html>
