@@ -10,28 +10,29 @@
   crossorigin="anonymous"
 />
 
-  <style>
-    body {
-      width: 90%;
-      margin: 5%;
-    }
-    .mdui-checkbox {
-      display: block;
-    }
-    .mdui-btn {
-      display: block;
-      margin-top: .5em;
-      margin-bottom: .5em;
-    }
-  </style>
+<style>
+body {
+  width: 90%;
+  margin: 5%;
+}
+.mdui-checkbox {
+  display: block;
+}
+.mdui-btn {
+  display: block;
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+</style>
 
 </head>
  
 <body>
 
   <label class="mdui-checkbox"><input id="delete-spaces" type="checkbox" checked/><i class="mdui-checkbox-icon"></i>删除空格</label>
-  <label class="mdui-checkbox"><input id="delete-blank-lines" type="checkbox" checked/><i class="mdui-checkbox-icon"></i>删除空行</label>
+  <label class="mdui-checkbox"><input id="delete-blank-lines" type="checkbox" checked/><i class="mdui-checkbox-icon"></i>删除多余空行</label>
   <label class="mdui-checkbox"><input id="convert-half-width-punctuation" type="checkbox" checked/><i class="mdui-checkbox-icon"></i>转换半角标点</label>
+  <label class="mdui-checkbox"><input id="double-blank-lines" type="checkbox"/><i class="mdui-checkbox-icon"></i>双倍换行</label>
   <button id="button" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-indigo">格式化</button>
 
   <div class="mdui-textfield">

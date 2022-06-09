@@ -5,6 +5,7 @@ document.getElementById('button').onclick = function () {
 		'delete-spaces',
 		'delete-blank-lines',
 		'convert-half-width-punctuation',
+		'double-blank-lines',
 	];
 
 	let options = {};
@@ -16,6 +17,8 @@ document.getElementById('button').onclick = function () {
 };
 
 function format(text, options) {
+console.log(options);
+	
 	if (options['delete-spaces']) {
 		text = text.replace(/[^\S\n]/g, '');
 	}
@@ -35,6 +38,10 @@ function format(text, options) {
 			.replace(/\(/g, '（')
 			.replace(/\)/g, '）')
 			.replace(/\-{2,}/g, '——')
+	}
+
+	if (options['double-blank-lines']) {
+		text = text.replace(/\n/g, '\n\n');
 	}
 
 	return text;
