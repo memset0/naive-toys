@@ -4,7 +4,7 @@ from sympy import *
 from sympy.abc import x
 from scipy.interpolate import pade
 
-eph = 0.00001
+eph = 0.0000001
 lim = 1000
 
 
@@ -57,7 +57,9 @@ def strize(f, abc=None):
 
 
 def integerize(p, q):
-    for k in range(1, 1000):
+    k = 0
+    while True:
+        k += 1
         fl = True
         tp, tq = p * k, q * k
         for f in [tp, tq]:
@@ -71,14 +73,13 @@ def integerize(p, q):
                 for i in range(f.order + 1):
                     f[i] = int(round(f[i]))
             return tp, tq
-    raise Exception('(' + str(p) + ', ' + str(q) + ') integerize failed.')
+    # raise Exception('(' + str(p) + ', ' + str(q) + ') integerize failed.')
 
 
 class Analyzer:
     x0 = 0
 
     def __init__(self, f, n, m, xmin, xmax):
-        global x
         self.n, self.m = n, m
         self.T, self.dT, self.taylor = (shaped(n + 1) for _ in range(3))
         self.R, self.dR, self.pade, self.ipade, self.spade = (shaped(n + 1, m + 1) for _ in range(5))
@@ -111,5 +112,5 @@ class Analyzer:
         # print(self.f, self.v, self.pade, sep='\n')
 
 
-Analyzer(exp(x), 3, 3, -lim, lim)
-Analyzer(ln(x + 1), 3, 3, -1, lim)
+Analyzer(exp(x), 5, 5, -lim, lim)
+Analyzer(ln(x + 1), 5, 5, -1, lim)
