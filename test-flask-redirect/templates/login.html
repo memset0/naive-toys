@@ -1,0 +1,13 @@
+<h1>Login</h1>
+<form method="POST" action="/login">
+  {{ form.csrf_token }}
+  <p>
+    {{ form.username.label }}
+    {{ form.username() }}
+  </p>
+  <p>
+    {{ form.password.label }}
+    {{ form.password() }}
+  </p>
+  <input type="submit" value="Submit">
+</form>
